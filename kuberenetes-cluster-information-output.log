@@ -1,0 +1,311 @@
+**************************************************************************************************
+         Kubernetes cluster
+**************************************************************************************************
+Kubernetes control plane is running at https://127.0.0.1:49157
+KubeDNS is running at https://127.0.0.1:49157/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+ 
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+
+ 
+**************************************************************************************************
+         Node
+**************************************************************************************************
+NAME       STATUS   ROLES    AGE   VERSION
+minikube   Ready    master   17h   v1.19.4
+ 
+**************************************************************************************************
+         Deployment
+**************************************************************************************************
+ 
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                   SELECTOR
+flaskapp-deployment   3/3     3            3           9h    flaskapp     karinegh18/flask-app:1   app=flaskapp
+ 
+Name:                   flaskapp-deployment
+Namespace:              default
+CreationTimestamp:      Sun, 17 Jan 2021 22:32:00 -0500
+Labels:                 app=flaskapp
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=flaskapp
+Replicas:               3 desired | 3 updated | 3 total | 3 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=flaskapp
+  Containers:
+   flaskapp:
+    Image:        karinegh18/flask-app:1
+    Port:         8080/TCP
+    Host Port:    0/TCP
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   flaskapp-deployment-7b99c867f6 (3/3 replicas created)
+Events:          <none>
+ 
+**************************************************************************************************
+        Service
+**************************************************************************************************
+ 
+NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE   SELECTOR
+flaskapp-service   NodePort    10.96.209.102   <none>        8080:30000/TCP   9h    app=flaskapp
+kubernetes         ClusterIP   10.96.0.1       <none>        443/TCP          17h   <none>
+ 
+Name:                     flaskapp-service
+Namespace:                default
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 app=flaskapp
+Type:                     NodePort
+IP Families:              <none>
+IP:                       10.96.209.102
+IPs:                      <none>
+Port:                     <unset>  8080/TCP
+TargetPort:               8080/TCP
+NodePort:                 <unset>  30000/TCP
+Endpoints:                172.17.0.3:8080,172.17.0.4:8080,172.17.0.5:8080
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+ 
+**************************************************************************************************
+        Pods
+**************************************************************************************************
+ 
+NAME                                   READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+flaskapp-deployment-7b99c867f6-5mlpr   1/1     Running   0          9h    172.17.0.5   minikube   <none>           <none>
+flaskapp-deployment-7b99c867f6-8svrn   1/1     Running   0          9h    172.17.0.4   minikube   <none>           <none>
+flaskapp-deployment-7b99c867f6-9sbzr   1/1     Running   0          9h    172.17.0.3   minikube   <none>           <none>
+ 
+Name:         flaskapp-deployment-7b99c867f6-5mlpr
+Namespace:    default
+Priority:     0
+Node:         minikube/192.168.49.2
+Start Time:   Sun, 17 Jan 2021 22:32:00 -0500
+Labels:       app=flaskapp
+              pod-template-hash=7b99c867f6
+Annotations:  <none>
+Status:       Running
+IP:           172.17.0.5
+IPs:
+  IP:           172.17.0.5
+Controlled By:  ReplicaSet/flaskapp-deployment-7b99c867f6
+Containers:
+  flaskapp:
+    Container ID:   docker://9aed52be0e7dd9f3630d62914aab093d96e5caa9f8847cc0059c0ab392d7d514
+    Image:          karinegh18/flask-app:1
+    Image ID:       docker-pullable://karinegh18/flask-app@sha256:48d2597a39789367ce5cfadbcccc8e482e1cefe526a5c622639c64cc037b1ee6
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 17 Jan 2021 22:32:13 -0500
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-qw7zl (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-qw7zl:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-qw7zl
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:          <none>
+
+
+Name:         flaskapp-deployment-7b99c867f6-8svrn
+Namespace:    default
+Priority:     0
+Node:         minikube/192.168.49.2
+Start Time:   Sun, 17 Jan 2021 22:32:00 -0500
+Labels:       app=flaskapp
+              pod-template-hash=7b99c867f6
+Annotations:  <none>
+Status:       Running
+IP:           172.17.0.4
+IPs:
+  IP:           172.17.0.4
+Controlled By:  ReplicaSet/flaskapp-deployment-7b99c867f6
+Containers:
+  flaskapp:
+    Container ID:   docker://2a48c25fc053a73324e4eb6ca2a5d99827c2123f0493aa0e3b501063bfa96783
+    Image:          karinegh18/flask-app:1
+    Image ID:       docker-pullable://karinegh18/flask-app@sha256:48d2597a39789367ce5cfadbcccc8e482e1cefe526a5c622639c64cc037b1ee6
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 17 Jan 2021 22:32:13 -0500
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-qw7zl (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-qw7zl:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-qw7zl
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:          <none>
+
+
+Name:         flaskapp-deployment-7b99c867f6-9sbzr
+Namespace:    default
+Priority:     0
+Node:         minikube/192.168.49.2
+Start Time:   Sun, 17 Jan 2021 22:32:00 -0500
+Labels:       app=flaskapp
+              pod-template-hash=7b99c867f6
+Annotations:  <none>
+Status:       Running
+IP:           172.17.0.3
+IPs:
+  IP:           172.17.0.3
+Controlled By:  ReplicaSet/flaskapp-deployment-7b99c867f6
+Containers:
+  flaskapp:
+    Container ID:   docker://c4479ba2a55bc85e84387466bed716a610783376b99de7e2cf8e629303f7fc6f
+    Image:          karinegh18/flask-app:1
+    Image ID:       docker-pullable://karinegh18/flask-app@sha256:48d2597a39789367ce5cfadbcccc8e482e1cefe526a5c622639c64cc037b1ee6
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 17 Jan 2021 22:32:13 -0500
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-qw7zl (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-qw7zl:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-qw7zl
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:          <none>
+**************************************************************************************************
+        Generate servive URL
+**************************************************************************************************
+🏃  Starting tunnel for service flaskapp-service.
+|-----------|------------------|-------------|------------------------|
+| NAMESPACE |       NAME       | TARGET PORT |          URL           |
+|-----------|------------------|-------------|------------------------|
+| default   | flaskapp-service |             | http://127.0.0.1:51472 |
+|-----------|------------------|-------------|------------------------|
+http://127.0.0.1:51472
+✋  Stopping tunnel for service flaskapp-service.
+**************************************************************************************************
+        check that app is accessible by port forwarding
+**************************************************************************************************
+ 
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ----------------------------------------------------------------- -->
+<!-- ----------------------------------------------------------------- -->
+<!-- ----------------------------------------------------------------- -->
+<head> <!-- header begins here -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link href="./static/css/style.css" rel="stylesheet">
+  <script type="text/javascript" src="./static/js/utils.js"></script>
+  <script type="text/javascript" src="./static/js/header-functions.js"></script>
+
+</head> <!-- header ends here -->
+<!-- ----------------------------------------------------------------- -->
+<!-- ----------------------------------------------------------------- -->
+<!-- ----------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ---------------------------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------------------------- -->
+<body> <!-- body begins here -->
+
+
+  <h1>The quickest of brown foxes.</h1>
+  <table>
+    <tr>
+      <td>
+        <img src="./static/img/platonic-icosahedron.gif">
+      </td>
+      <td>
+        <img src="./static/img/platonic-octahedron.gif">
+      </td>
+      <td>
+        <img src="./static/img/platonic-pyramid.gif">
+      </td>
+    </tr>
+  </table>
+
+
+
+
+  <!-- ====================================================== -->
+  <!-- ====================================================== -->
+  <footer>
+    <!-- footer of page begins here -->
+    <script type="text/javascript" src="./static/js/footer-functions.js"></script>
+  </footer> <!-- footer of page ends here -->
+  <!-- ====================================================== -->
+  <!-- ====================================================== -->
+
+</body>
+<!-- ---------------------------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------------------------- -->
+
+</html>
